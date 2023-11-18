@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Space Missions</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #missionList {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Current Space Missions</h1>
+
+    <div id="missionList">
+        <!-- Mission information will be added dynamically here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const missionList = document.getElementById('missionList');
+
+            function fetchSpaceMissions() {
+                fetch('https://ll.thespacedevs.com/2.0.0/launch/upcoming/')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+
+                        // Clear existing mission list
+                        missionList.innerHTML = '';
+
+                        // Display upcoming missions
+                        if (data.results.length > 0) {
+                            data.results.forEach(mission => {
+                                const missionElement = document.createElement('div');
+                                missionElement.innerHTML = `
+                                    <h3>${mission.name}</h3>
+                                    <p><strong>Launch Date:</strong> ${new Date(mission.window_start).toUTCString()}</p>
+                                    <p><strong>Provider:</strong> ${mission.launch_service_provider.name}</p>
+                                    <p><strong>Location:</strong> ${mission.pad.location.name}</p>
+                                    <hr>
+                                `;
+                                missionList.appendChild(missionElement);
+                            });
+                        } else {
+                            missionList.innerHTML = '<p>No upcoming missions.</p>';
+                        }
+                    })
+                    .catch(error => console.error('Error fetching space missions:', error));
+            }
+
+            // Fetch and display space missions initially
+            fetchSpaceMissions();
+
+            // Set interval to fetch and update space missions every 5 seconds
+            setInterval(fetchSpaceMissions, 5000);
+        });
+    </script>
+
+</body>
+</html>

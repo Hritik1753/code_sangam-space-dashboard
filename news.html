@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space News</title>
+</head>
+<body>
+  
+<div id="news-container"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const apiKey = ' 07e8f171e70547899255f32bebc6ed3a'; // Replace with your News API key
+    const endpoint = 'https://newsapi.org/v2/top-headlines';
+    const query = 'space';
+    const url = `${endpoint}?q=${query}&apiKey=${apiKey}`;
+
+    fetch()
+      .then(data => displayNews(data.articles))
+      .catch(error => console.error('Error fetching news:', error));
+  });
+
+  function displayNews(articles) {
+    const newsContainer = document.getElementById('news-container');
+
+    articles.forEach(article => {
+      const articleElement = document.createElement('div');
+      articleElement.innerHTML = `
+        <h3>${article.title}</h3>
+        <p>${article.description}</p>
+        <a href="${article.url}" target="_blank">Read more</a>
+        <hr>
+      `;
+      newsContainer.appendChild(articleElement);
+    });
+  }
+</script>
+
+</body>
+</html>
