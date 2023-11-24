@@ -1,0 +1,73 @@
+
+
+#lessons{
+    /* display: flex; */
+    text-align: center;
+     /* height: 730px; */
+     height: 100vh;
+     /* width: 600px; */
+     background-image: url('https://images.unsplash.com/photo-1540198163009-7afda7da2945?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+     /* background-image: url('./lesson.jpeg'); */
+     background-color: white;
+     background-size: cover;
+     height: 100vh;
+     /* color: black; */
+     align-items: center;
+     justify-content: center;
+     background-repeat: no-repeat;
+     
+  }
+
+header {
+    text-align: center;
+ 
+  background-color: transparent;
+
+}
+
+ h1{
+   font-size: 2rem;
+   position: relative;
+ }
+#lessons-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin: auto;
+}
+
+#left-section,
+#right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Full height of the viewport */
+    
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease-in-out; /* Add transition effect */
+    overflow: hidden;
+    /* color: white; */
+    padding: 20px;
+}
+
+#left-section {
+    background-color: rgba(0, 123, 255, 0.8); /* Blue background */
+}
+
+#right-section {
+    background-color: rgba(255, 0, 0, 0.8); /* Red background */
+    width: 500px;
+}
+
+@media (max-width: 768px) {
+    #lessons-container {
+        flex-direction: column;
+    }
+
+    #left-section,
+    #right-section {
+        width: 100%;
+    }
+} 
